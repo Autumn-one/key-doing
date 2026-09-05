@@ -91,6 +91,7 @@
   "mirrors": [
     {
       "id": "gitee-release",
+      "maxSizeBytes": 100000000,
       "name": "Gitee Releases 直链",
       "type": "direct",
       "priority": 1,
