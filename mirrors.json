@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-21T12:00:00+08:00",
+  "description": "KeyDoing 国内下载渠道列表。priority 越小越优先；GitHub 加速站用法：代理前缀 + 完整 GitHub Release URL。",
+  "github": {
+    "owner": "Autumn-one",
+    "repo": "key-doing"
+  },
+  "gitee": {
+    "owner": "Autumn-one",
+    "repo": "key-doing-info"
+  },
+  "urlTemplateHelp": {
+    "githubReleaseAsset": "https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+    "githubProxyAsset": "{mirrorBase}https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+    "example": "https://ghfast.top/https://github.com/YOUR_GITHUB_OWNER/key-doing/releases/download/v0.0.1/KeyDoing-0.0.1-win-x64.zip"
+  },
+  "configSources": [
+    {
+      "id": "gitee-raw-mirrors",
+      "name": "Gitee 镜像列表（本仓库）",
+      "priority": 1,
+      "enabled": true,
+      "url": "https://gitee.com/{giteeOwner}/{giteeRepo}/raw/master/mirrors.json"
+    },
+    {
+      "id": "github-raw-config-gitwarp",
+      "priority": 10,
+      "enabled": true,
+      "url": "https://proxy.gitwarp.top/https://raw.githubusercontent.com/{owner}/{repo}/main/mirrors.json"
+    },
+    {
+      "id": "github-raw-config-ghfast",
+      "priority": 20,
+      "enabled": true,
+      "url": "https://ghfast.top/https://raw.githubusercontent.com/{owner}/{repo}/main/mirrors.json"
+    },
+    {
+      "id": "github-raw-config",
+      "priority": 100,
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/{owner}/{repo}/main/mirrors.json"
+    }
+  ],
+  "versionSources": [
+    {
+      "id": "gitee-raw-version",
+      "name": "Gitee 版本清单（本仓库）",
+      "priority": 1,
+      "enabled": true,
+      "url": "https://gitee.com/{giteeOwner}/{giteeRepo}/raw/master/version.json"
+    },
+    {
+      "id": "github-release-version-gitwarp",
+      "name": "GitHub version.json（gitwarp 加速）",
+      "priority": 10,
+      "enabled": true,
+      "url": "https://proxy.gitwarp.top/https://github.com/{owner}/{repo}/releases/latest/download/version.json"
+    },
+    {
+      "id": "github-release-version-ghfast",
+      "name": "GitHub version.json（ghfast 加速）",
+      "priority": 20,
+      "enabled": true,
+      "url": "https://ghfast.top/https://github.com/{owner}/{repo}/releases/latest/download/version.json"
+    },
+    {
+      "id": "github-release-version",
+      "name": "GitHub Release 附件（直连）",
+      "priority": 100,
+      "enabled": true,
+      "url": "https://github.com/{owner}/{repo}/releases/latest/download/version.json"
+    }
+  ],
+  "analyticsSources": [
+    {
+      "id": "local-dev",
+      "name": "本地开发埋点（默认关闭，联调时可启用）",
+      "priority": 1,
+      "enabled": false,
+      "url": "http://127.0.0.1:3920/api/v1"
+    },
+    {
+      "id": "production-primary",
+      "name": "线上主埋点服务",
+      "priority": 10,
+      "enabled": true,
+      "url": "http://43.159.148.243:3920/api/v1"
+    }
+  ],
+  "mirrors": [
+    {
+      "id": "gitee-release",
+      "name": "Gitee Releases 直链",
+      "type": "direct",
+      "priority": 1,
+      "enabled": true,
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://gitee.com/{giteeOwner}/{giteeRepo}/releases/download/{tag}/{file}",
+      "notes": "国内主渠道，发布时需同步上传 zip 到 Gitee Releases"
+    },
+    {
+      "id": "gitwarp",
+      "name": "proxy.gitwarp.top",
+      "type": "github-proxy",
+      "priority": 10,
+      "enabled": true,
+      "mirrorBase": "https://proxy.gitwarp.top/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://proxy.gitwarp.top/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速：mirrorBase + 完整 GitHub 下载 URL"
+    },
+    {
+      "id": "ghfast",
+      "name": "ghfast.top",
+      "type": "github-proxy",
+      "priority": 20,
+      "enabled": true,
+      "mirrorBase": "https://ghfast.top/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://ghfast.top/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速"
+    },
+    {
+      "id": "gh-proxy",
+      "name": "gh-proxy.org",
+      "type": "github-proxy",
+      "priority": 30,
+      "enabled": true,
+      "mirrorBase": "https://gh-proxy.org/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://gh-proxy.org/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速"
+    },
+    {
+      "id": "gh-proxy-v4",
+      "name": "v4.gh-proxy.org",
+      "type": "github-proxy",
+      "priority": 40,
+      "enabled": true,
+      "mirrorBase": "https://v4.gh-proxy.org/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://v4.gh-proxy.org/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速（IPv4）"
+    },
+    {
+      "id": "gh-proxy-v6",
+      "name": "v6.gh-proxy.org",
+      "type": "github-proxy",
+      "priority": 50,
+      "enabled": true,
+      "mirrorBase": "https://v6.gh-proxy.org/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://v6.gh-proxy.org/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速（IPv6）"
+    },
+    {
+      "id": "gh-proxy-cdn",
+      "name": "cdn.gh-proxy.org",
+      "type": "github-proxy",
+      "priority": 60,
+      "enabled": true,
+      "mirrorBase": "https://cdn.gh-proxy.org/",
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://cdn.gh-proxy.org/https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "GitHub Release 加速（CDN）"
+    },
+    {
+      "id": "github-direct",
+      "name": "GitHub 官方直链",
+      "type": "direct",
+      "priority": 100,
+      "enabled": true,
+      "assetRoles": ["framework"],
+      "urlTemplate": "https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
+      "notes": "兜底；国内可能较慢或不可用"
+    }
+  ]
+}
