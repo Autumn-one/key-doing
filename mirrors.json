@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T12:00:00+08:00",
-  "description": "KeyDoing 国内下载渠道列表。priority 越小越优先；GitHub 加速站用法：代理前缀 + 完整 GitHub Release URL。",
+  "updatedAt": "2026-09-18T12:00:00+08:00",
+  "description": "KeyDoing 国内下载渠道列表。priority 越小越优先；GitHub 加速站用法：代理前缀 + 完整 GitHub Release URL。announcementSources / personalInfoSources 拉取公告仓库 Markdown 源文件（raw）；Gitee 渠道无此仓库，不提供公告源与个人信息源。",
   "github": {
     "owner": "Autumn-one",
     "repo": "key-doing"
@@ -10,10 +10,24 @@
     "owner": "Autumn-one",
     "repo": "key-doing-info"
   },
+  "announcement": {
+    "owner": "Autumn-one",
+    "repo": "notify",
+    "branch": "main",
+    "file": "README.md"
+  },
+  "personalInfo": {
+    "owner": "Autumn-one",
+    "repo": "notify",
+    "branch": "main",
+    "file": "info.md"
+  },
   "urlTemplateHelp": {
     "githubReleaseAsset": "https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
     "githubProxyAsset": "{mirrorBase}https://github.com/{owner}/{repo}/releases/download/{tag}/{file}",
-    "example": "https://ghfast.top/https://github.com/YOUR_GITHUB_OWNER/key-doing/releases/download/v0.0.1/KeyDoing-0.0.1-win-x64.zip"
+    "example": "https://ghfast.top/https://github.com/YOUR_GITHUB_OWNER/key-doing/releases/download/v0.0.1/KeyDoing-0.0.1-win-x64.zip",
+    "announcementRaw": "{mirrorBase}https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}",
+    "personalInfoRaw": "{mirrorBase}https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
   },
   "configSources": [
     {
@@ -86,6 +100,108 @@
       "priority": 10,
       "enabled": true,
       "url": "http://43.159.148.243:3920/api/v1"
+    }
+  ],
+  "announcementSources": [
+    {
+      "id": "announce-raw-gitwarp",
+      "name": "公告源（gitwarp 加速）",
+      "priority": 10,
+      "enabled": true,
+      "url": "https://proxy.gitwarp.top/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-ghfast",
+      "name": "公告源（ghfast 加速）",
+      "priority": 20,
+      "enabled": true,
+      "url": "https://ghfast.top/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-gh-proxy",
+      "name": "公告源（gh-proxy.org）",
+      "priority": 30,
+      "enabled": true,
+      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-gh-proxy-v4",
+      "name": "公告源（gh-proxy.org IPv4）",
+      "priority": 40,
+      "enabled": true,
+      "url": "https://v4.gh-proxy.org/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-gh-proxy-v6",
+      "name": "公告源（gh-proxy.org IPv6）",
+      "priority": 50,
+      "enabled": true,
+      "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-gh-proxy-cdn",
+      "name": "公告源（gh-proxy.org CDN）",
+      "priority": 60,
+      "enabled": true,
+      "url": "https://cdn.gh-proxy.org/https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    },
+    {
+      "id": "announce-raw-github",
+      "name": "公告源（GitHub 直连，兜底）",
+      "priority": 100,
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/{announcementOwner}/{announcementRepo}/{announcementBranch}/{announcementFile}"
+    }
+  ],
+  "personalInfoSources": [
+    {
+      "id": "personal-info-gitwarp",
+      "name": "个人信息源（gitwarp 加速）",
+      "priority": 10,
+      "enabled": true,
+      "url": "https://proxy.gitwarp.top/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-ghfast",
+      "name": "个人信息源（ghfast 加速）",
+      "priority": 20,
+      "enabled": true,
+      "url": "https://ghfast.top/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-gh-proxy",
+      "name": "个人信息源（gh-proxy.org）",
+      "priority": 30,
+      "enabled": true,
+      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-gh-proxy-v4",
+      "name": "个人信息源（gh-proxy.org IPv4）",
+      "priority": 40,
+      "enabled": true,
+      "url": "https://v4.gh-proxy.org/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-gh-proxy-v6",
+      "name": "个人信息源（gh-proxy.org IPv6）",
+      "priority": 50,
+      "enabled": true,
+      "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-gh-proxy-cdn",
+      "name": "个人信息源（gh-proxy.org CDN）",
+      "priority": 60,
+      "enabled": true,
+      "url": "https://cdn.gh-proxy.org/https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
+    },
+    {
+      "id": "personal-info-github",
+      "name": "个人信息源（GitHub 直连，兜底）",
+      "priority": 100,
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/{personalInfoOwner}/{personalInfoRepo}/{personalInfoBranch}/{personalInfoFile}"
     }
   ],
   "mirrors": [
